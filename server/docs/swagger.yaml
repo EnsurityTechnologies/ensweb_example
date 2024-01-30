@@ -1,0 +1,93 @@
+definitions:
+  main.Request:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    type: object
+  main.Response:
+    properties:
+      message:
+        type: string
+      status:
+        type: boolean
+      token:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /api/home:
+    get:
+      consumes:
+      - application/json
+      description: Login session in the dashbaord
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Response'
+      summary: Login Session
+      tags:
+      - accounts
+  /api/login:
+    post:
+      consumes:
+      - application/json
+      description: login in the dashboard
+      parameters:
+      - description: Login Credential
+        in: body
+        name: login
+        required: true
+        schema:
+          $ref: '#/definitions/main.Request'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Response'
+      summary: Login into account
+      tags:
+      - accounts
+  /api/logout:
+    post:
+      consumes:
+      - application/json
+      description: Logout from the session
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: Logout from the session
+      tags:
+      - accounts
+  /api/register:
+    post:
+      consumes:
+      - application/json
+      description: Register new account on the dashboard
+      parameters:
+      - description: User email & Password
+        in: body
+        name: Request
+        required: true
+        schema:
+          $ref: '#/definitions/main.Request'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Response'
+      summary: Register new user account
+      tags:
+      - accounts
+swagger: "2.0"
